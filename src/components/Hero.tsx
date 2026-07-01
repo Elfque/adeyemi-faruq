@@ -65,16 +65,10 @@ const Hero = () => {
   return (
     <div
       ref={container}
-      className="min-h-screen bg-[#242730] text-white p-8 overflow-hidden"
+      className="min-h-[90vh] text-white p-8 overflow-hidden flex justify-center items-center"
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center container w-11/12 mx-auto">
         <div className="space-y-6 fade-up">
-          <img
-            src="/logo.png"
-            alt="Adeyemi Faruq"
-            className="w-13 h-12 object-cover"
-          />
-
           <h1 className="text-7xl font-bold leading-tight">
             Adeyemi
             <br />
@@ -95,12 +89,6 @@ const Hero = () => {
         </div>
 
         <div className="relative">
-          <nav className="absolute top-0 right-0 flex space-x-6 text-lg font-medium fade-up">
-            <span className="text-gray-500 cursor-pointer">Services</span>
-            <span className="text-gray-500 cursor-pointer">Works</span>
-            <span className="text-gray-500 cursor-pointer">Blog</span>
-          </nav>
-
           <div className="mt-20 fade-up">
             <img
               src="image_18c1bc.jpg"

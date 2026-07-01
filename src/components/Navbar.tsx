@@ -34,6 +34,7 @@ const Navbar = () => {
         opacity: 0,
         duration: 0.7,
         delay: 0.3,
+        immediateRender: false,
         ease: "power2.out",
       });
 
@@ -43,6 +44,7 @@ const Navbar = () => {
         duration: 0.5,
         stagger: 0.1,
         delay: 0.5,
+        immediateRender: false,
         ease: "power2.out",
       });
 
@@ -51,6 +53,7 @@ const Navbar = () => {
         opacity: 0,
         duration: 0.6,
         delay: 0.9,
+        immediateRender: false,
         ease: "back.out(1.5)",
       });
     }, navRef.current);
@@ -75,7 +78,7 @@ const Navbar = () => {
           onToggle: (self) => {
             if (self.isActive) setActiveSection(id);
           },
-        })
+        }),
       );
     });
 
@@ -96,9 +99,7 @@ const Navbar = () => {
       ref={navRef}
       className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
       style={{
-        background: scrolled
-          ? "rgba(36, 39, 48, 0.82)"
-          : "transparent",
+        background: scrolled ? "rgba(36, 39, 48, 0.82)" : "transparent",
         backdropFilter: scrolled ? "blur(16px) saturate(180%)" : "none",
         WebkitBackdropFilter: scrolled ? "blur(16px) saturate(180%)" : "none",
         borderBottom: scrolled
@@ -129,8 +130,7 @@ const Navbar = () => {
         {/* ── Desktop links ── */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => {
-            const isActive =
-              activeSection === link.href.replace("#", "");
+            const isActive = activeSection === link.href.replace("#", "");
             return (
               <button
                 key={link.label}
@@ -210,26 +210,20 @@ const Navbar = () => {
           opacity: mobileOpen ? 1 : 0,
           background: "rgba(36, 39, 48, 0.96)",
           backdropFilter: "blur(20px)",
-          borderTop: mobileOpen
-            ? "1px solid rgba(255,255,255,0.06)"
-            : "none",
+          borderTop: mobileOpen ? "1px solid rgba(255,255,255,0.06)" : "none",
         }}
       >
         <div className="flex flex-col gap-1 px-8 py-6">
           {navLinks.map((link) => {
-            const isActive =
-              activeSection === link.href.replace("#", "");
+            const isActive = activeSection === link.href.replace("#", "");
             return (
               <button
                 key={link.label}
                 onClick={() => scrollTo(link.href)}
-                className="text-left py-3 px-4 rounded-xl text-base font-medium transition-all duration-200 bg-transparent border-none cursor-pointer"
+                className="text-left py-3 px-4 rounded-xl text-base font-medium transition-all duration-200 bg-transparent border-none cursor-pointer font-inherit"
                 style={{
                   color: isActive ? "#02fdc9" : "rgba(255,255,255,0.6)",
-                  background: isActive
-                    ? "rgba(2,253,201,0.08)"
-                    : "transparent",
-                  fontFamily: "Poppins, sans-serif",
+                  background: isActive ? "rgba(2,253,201,0.08)" : "transparent",
                 }}
               >
                 {link.label}

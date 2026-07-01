@@ -2,6 +2,8 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+import { FiDownload } from "react-icons/fi";
+
 gsap.registerPlugin(ScrollTrigger);
 
 const traits = [
@@ -28,16 +30,20 @@ const AboutSection = () => {
   const pillsRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
+    if (!sectionRef.current) return;
+    const section = sectionRef.current;
+
     const ctx = gsap.context(() => {
-      // Left image + decorative elements
       gsap.from(".about-image-wrap", {
         x: -60,
         opacity: 0,
         duration: 1,
+        immediateRender: false,
         ease: "power3.out",
         scrollTrigger: {
-          trigger: sectionRef.current,
+          trigger: section,
           start: "top 75%",
+          toggleActions: "play none none none",
         },
       });
 
@@ -45,52 +51,62 @@ const AboutSection = () => {
         scale: 0.6,
         opacity: 0,
         duration: 1.2,
+        immediateRender: false,
         ease: "power3.out",
         scrollTrigger: {
-          trigger: sectionRef.current,
+          trigger: section,
           start: "top 75%",
+          toggleActions: "play none none none",
         },
       });
 
       // Right content lines
-      gsap.from(".about-line", {
+      gsap.from(section.querySelectorAll(".about-line"), {
         y: 40,
         opacity: 0,
         duration: 0.8,
         stagger: 0.15,
+        immediateRender: false,
         ease: "power2.out",
         scrollTrigger: {
           trigger: contentRef.current,
           start: "top 80%",
+          toggleActions: "play none none none",
         },
       });
 
       // Stat counters
-      gsap.from(".stat-item", {
+      gsap.from(section.querySelectorAll(".stat-item"), {
         y: 30,
         opacity: 0,
         duration: 0.7,
         stagger: 0.15,
+        immediateRender: false,
         ease: "power2.out",
         scrollTrigger: {
           trigger: statsRef.current,
           start: "top 85%",
+          toggleActions: "play none none none",
         },
       });
 
       // Trait pills
-      gsap.from(".trait-pill", {
-        scale: 0.7,
-        opacity: 0,
-        duration: 0.5,
-        stagger: 0.1,
-        ease: "back.out(1.4)",
-        scrollTrigger: {
-          trigger: pillsRef.current,
-          start: "top 90%",
-        },
-      });
-    }, sectionRef);
+      if (pillsRef.current) {
+        gsap.from(section.querySelectorAll(".trait-pill"), {
+          scale: 0.7,
+          opacity: 0,
+          duration: 0.5,
+          stagger: 0.1,
+          immediateRender: false,
+          ease: "back.out(1.4)",
+          scrollTrigger: {
+            trigger: pillsRef.current,
+            start: "top 90%",
+            toggleActions: "play none none none",
+          },
+        });
+      }
+    }, section);
 
     return () => ctx.revert();
   }, []);
@@ -102,13 +118,10 @@ const AboutSection = () => {
       id="about"
     >
       <div className="section-container">
-        {/* ── Section Label ── */}
         <p className="text-gray-400 mb-4 about-line">— About Me</p>
 
         <div className="grid md:grid-cols-2 gap-16 items-center">
-          {/* ── LEFT: Image block ── */}
           <div ref={imageRef} className="relative flex justify-center">
-            {/* Decorative glow blob */}
             <div
               className="about-blob absolute w-72 h-72 rounded-full"
               style={{
@@ -123,19 +136,17 @@ const AboutSection = () => {
             />
 
             <div className="about-image-wrap relative z-10">
-              {/* Accent border frame */}
               <div
                 className="absolute -top-4 -left-4 w-full h-full rounded-2xl border-2 opacity-40"
                 style={{ borderColor: "#02fdc9" }}
               />
               <img
-                src="image_18c1bc.jpg"
+                src="/Adeyemi Faruq.jpeg"
                 alt="Adeyemi Faruq"
                 className="w-full max-w-sm rounded-2xl object-cover shadow-2xl relative z-10"
                 style={{ aspectRatio: "3/4", objectPosition: "top" }}
               />
 
-              {/* Floating badge */}
               <div
                 className="absolute -bottom-5 -right-5 z-20 px-5 py-3 rounded-xl shadow-xl flex items-center gap-3"
                 style={{ background: "#373A44" }}
@@ -151,7 +162,6 @@ const AboutSection = () => {
             </div>
           </div>
 
-          {/* ── RIGHT: Content ── */}
           <div ref={contentRef} className="space-y-6">
             <h2 className="text-5xl font-bold leading-tight about-line">
               I Build Things{" "}
@@ -218,20 +228,7 @@ const AboutSection = () => {
                 }
               >
                 Download CV
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-4 h-4"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={2.5}
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3"
-                  />
-                </svg>
+                <FiDownload className="text-xl" />
               </a>
               <a
                 href="mailto:hello@dev.com"
