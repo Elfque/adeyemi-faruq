@@ -13,3 +13,18 @@ body {
 .section-container {
   @apply mx-auto w-11/12;
 }
+
+/* For Chrome, Safari, and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* For Firefox */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+/* For Internet Explorer and Edge */
+.no-scrollbar {
+  -ms-overflow-style: none;
+}

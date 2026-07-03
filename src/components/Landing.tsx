@@ -4,6 +4,7 @@ import AboutSection from "./About";
 import ContactSection from "./Contact";
 import Footer from "./Footer";
 import SkillsSection from "./Skills";
+import WorksSection from "./Works";
 
 const Landing = () => {
   return (
@@ -12,6 +13,7 @@ const Landing = () => {
       <Hero />
       <AboutSection />
       <SkillsSection />
+      <WorksSection />
       <ContactSection />
       <Footer />
     </div>
