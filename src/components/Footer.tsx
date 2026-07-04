@@ -1,13 +1,6 @@
-import { FaLinkedin, FaInstagram, FaTiktok, FaGithub } from "react-icons/fa";
+import { socials } from "../constants/socials";
 
 const navLinks = ["Services", "Works", "About", "Contact"];
-
-const socials = [
-  { icon: <FaLinkedin />, href: "#", label: "LinkedIn" },
-  { icon: <FaInstagram />, href: "#", label: "Instagram" },
-  { icon: <FaTiktok />, href: "#", label: "TikTok" },
-  { icon: <FaGithub />, href: "#", label: "GitHub" },
-];
 
 const Footer = () => {
   const year = new Date().getFullYear();
@@ -19,11 +12,18 @@ const Footer = () => {
     >
       <div className="section-container">
         {/* ── Top row ── */}
-        <div className="grid md:grid-cols-3 gap-12 pb-12" style={{ borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
+        <div
+          className="grid md:grid-cols-3 gap-12 pb-12"
+          style={{ borderBottom: "1px solid rgba(255,255,255,0.07)" }}
+        >
           {/* Brand */}
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <img src="/logo.png" alt="Adeyemi Faruq" className="w-10 h-9 object-contain" />
+              <img
+                src="/logo.png"
+                alt="Adeyemi Faruq"
+                className="w-10 h-9 object-contain"
+              />
               <span className="text-xl font-bold tracking-tight">
                 Adeyemi<span style={{ color: "#02fdc9" }}>.</span>
               </span>
@@ -106,6 +106,7 @@ const Footer = () => {
                   key={s.label}
                   href={s.href}
                   aria-label={s.label}
+                  target="_blank"
                   className="w-9 h-9 rounded-lg flex items-center justify-center text-base transition-all duration-200"
                   style={{
                     background: "rgba(255,255,255,0.06)",
@@ -123,7 +124,7 @@ const Footer = () => {
                       "rgba(255,255,255,0.5)";
                   }}
                 >
-                  {s.icon}
+                  <s.Icon />
                 </a>
               ))}
             </div>
@@ -134,8 +135,8 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 pt-8 text-xs text-gray-500">
           <p>
             © {year}{" "}
-            <span className="text-gray-300 font-medium">Adeyemi Faruq</span>. All rights
-            reserved.
+            <span className="text-gray-300 font-medium">Adeyemi Faruq</span>.
+            All rights reserved.
           </p>
           <p>
             Designed &amp; Built with{" "}

@@ -1,21 +1,12 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import {
-  FaReact,
-  FaNodeJs,
-  FaFigma,
-  FaGitAlt,
-  FaDocker,
-  FaPython,
-} from "react-icons/fa";
+import { FaReact, FaNodeJs, FaFigma, FaGitAlt, FaPython } from "react-icons/fa";
 import {
   SiTypescript,
   SiTailwindcss,
   SiNextdotjs,
-  SiPostgresql,
   SiMongodb,
-  SiGraphql,
   SiVite,
   SiFramer,
   SiFirebase,
@@ -23,37 +14,24 @@ import {
 
 gsap.registerPlugin(ScrollTrigger);
 
-const skillCategories = [
-  {
-    label: "Frontend",
-    skills: [
-      { name: "React", icon: <FaReact />, level: 95 },
-      { name: "TypeScript", icon: <SiTypescript />, level: 90 },
-      { name: "Next.js", icon: <SiNextdotjs />, level: 88 },
-      { name: "Tailwind CSS", icon: <SiTailwindcss />, level: 92 },
-      { name: "Framer Motion", icon: <SiFramer />, level: 80 },
-      { name: "Vite", icon: <SiVite />, level: 85 },
-    ],
-  },
-  {
-    label: "Backend",
-    skills: [
-      { name: "Node.js", icon: <FaNodeJs />, level: 88 },
-      { name: "Python", icon: <FaPython />, level: 75 },
-      { name: "PostgreSQL", icon: <SiPostgresql />, level: 82 },
-      { name: "MongoDB", icon: <SiMongodb />, level: 80 },
-      { name: "GraphQL", icon: <SiGraphql />, level: 70 },
-      { name: "Firebase", icon: <SiFirebase />, level: 85 },
-    ],
-  },
-  {
-    label: "Tools & Design",
-    skills: [
-      { name: "Figma", icon: <FaFigma />, level: 87 },
-      { name: "Git", icon: <FaGitAlt />, level: 93 },
-      { name: "Docker", icon: <FaDocker />, level: 72 },
-    ],
-  },
+const skills = [
+  { name: "React", icon: <FaReact />, level: 95 },
+  { name: "TypeScript", icon: <SiTypescript />, level: 90 },
+  { name: "Next.js", icon: <SiNextdotjs />, level: 88 },
+  { name: "Tailwind CSS", icon: <SiTailwindcss />, level: 92 },
+  { name: "Framer Motion", icon: <SiFramer />, level: 80 },
+  { name: "Vite", icon: <SiVite />, level: 85 },
+
+  { name: "Node.js", icon: <FaNodeJs />, level: 88 },
+  { name: "Python", icon: <FaPython />, level: 55 },
+  // { name: "PostgreSQL", icon: <SiPostgresql />, level: 82 },
+  { name: "MongoDB", icon: <SiMongodb />, level: 80 },
+  // { name: "GraphQL", icon: <SiGraphql />, level: 70 },
+  { name: "Firebase", icon: <SiFirebase />, level: 85 },
+
+  { name: "Figma", icon: <FaFigma />, level: 87 },
+  { name: "Git", icon: <FaGitAlt />, level: 93 },
+  // { name: "Docker", icon: <FaDocker />, level: 72 },
 ];
 
 /* ─── Animated skill bar ─────────────────────────────────────────── */
@@ -129,9 +107,6 @@ const SkillBar = ({
 /* ─── Main section ───────────────────────────────────────────────── */
 const SkillsSection = () => {
   const sectionRef = useRef<HTMLElement | null>(null);
-  const [activeTab, setActiveTab] = useState<string>("Frontend");
-
-  const active = skillCategories.find((c) => c.label === activeTab)!;
 
   /* entrance animations */
   useEffect(() => {
@@ -184,15 +159,6 @@ const SkillsSection = () => {
     return () => ctx.revert();
   }, []);
 
-  /* re-animate bars & items on tab switch */
-  useEffect(() => {
-    gsap.fromTo(
-      ".skill-item",
-      { y: 18, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.4, stagger: 0.07, ease: "power2.out" }
-    );
-  }, [activeTab]);
-
   return (
     <section
       ref={sectionRef}
@@ -205,8 +171,7 @@ const SkillsSection = () => {
           <p className="text-gray-400 mb-3">— Skills & Expertise</p>
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
             <h2 className="text-5xl font-bold leading-tight">
-              Tools I{" "}
-              <span style={{ color: "#02fdc9" }}>Wield Daily</span>
+              Tools I <span style={{ color: "#02fdc9" }}>Wield Daily</span>
             </h2>
             <p className="text-gray-400 max-w-xs leading-7 md:text-right">
               A curated stack I rely on to build fast, beautiful, and scalable
@@ -219,33 +184,11 @@ const SkillsSection = () => {
           />
         </div>
 
-        {/* ── Category Tabs ── */}
-        <div className="skills-tabs flex gap-3 mb-10 flex-wrap">
-          {skillCategories.map((cat) => (
-            <button
-              key={cat.label}
-              className="skills-tab px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 cursor-pointer"
-              style={
-                activeTab === cat.label
-                  ? { background: "#02fdc9", color: "#000" }
-                  : {
-                      background: "rgba(255,255,255,0.06)",
-                      color: "rgba(255,255,255,0.6)",
-                      border: "1px solid rgba(255,255,255,0.1)",
-                    }
-              }
-              onClick={() => setActiveTab(cat.label)}
-            >
-              {cat.label}
-            </button>
-          ))}
-        </div>
-
         {/* ── Skill Bars Grid ── */}
         <div className="grid md:grid-cols-2 gap-x-16 gap-y-7 mb-16">
-          {active.skills.map((skill, i) => (
+          {skills.map((skill, i) => (
             <SkillBar
-              key={`${activeTab}-${skill.name}`}
+              key={`${skill.name}`}
               name={skill.name}
               icon={skill.icon}
               level={skill.level}
@@ -261,7 +204,11 @@ const SkillsSection = () => {
         >
           {[
             { value: "5+", label: "Years Experience", sub: "Full-stack dev" },
-            { value: "20+", label: "Projects Shipped", sub: "Across industries" },
+            {
+              value: "20+",
+              label: "Projects Shipped",
+              sub: "Across industries",
+            },
             { value: "15+", label: "Technologies", sub: "In active use" },
             { value: "100%", label: "Passion", sub: "For clean code" },
           ].map((item) => (

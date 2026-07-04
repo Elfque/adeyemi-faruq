@@ -1,15 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import {
-  FaLinkedin,
-  FaInstagram,
-  FaTiktok,
-  FaGithub,
-  FaEnvelope,
-  FaMapMarkerAlt,
-  FaPhoneAlt,
-} from "react-icons/fa";
+import { FaEnvelope, FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa";
+import { socials } from "../constants/socials";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -34,12 +27,12 @@ const contactInfo = [
   },
 ];
 
-const socials = [
-  { icon: <FaLinkedin />, href: "#", label: "LinkedIn" },
-  { icon: <FaInstagram />, href: "#", label: "Instagram" },
-  { icon: <FaTiktok />, href: "#", label: "TikTok" },
-  { icon: <FaGithub />, href: "#", label: "GitHub" },
-];
+// const socials = [
+//   { icon: <FaLinkedin />, href: "#", label: "LinkedIn" },
+//   { icon: <FaInstagram />, href: "#", label: "Instagram" },
+//   { icon: <FaTiktok />, href: "#", label: "TikTok" },
+//   { icon: <FaGithub />, href: "#", label: "GitHub" },
+// ];
 
 const ContactSection = () => {
   const sectionRef = useRef<HTMLElement | null>(null);
@@ -256,7 +249,7 @@ const ContactSection = () => {
                         "rgba(255,255,255,0.6)";
                     }}
                   >
-                    {s.icon}
+                    <s.Icon />
                   </a>
                 ))}
               </div>

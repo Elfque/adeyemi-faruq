@@ -308,7 +308,7 @@ const WorksSection = () => {
                   alt={project.title}
                   className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
                   <span className="text-white text-xs font-semibold px-3 py-1.5 rounded-full backdrop-blur-md bg-white/20">
                     Learn More &rarr;
                   </span>
@@ -316,17 +316,17 @@ const WorksSection = () => {
               </div>
 
               {/* Info Body */}
-              <div className="p-6 flex flex-col flex-grow">
+              <div className="p-6 flex flex-col grow">
                 <span
                   className="text-xs font-semibold tracking-wider uppercase mb-2 block"
                   style={{ color: "#02fdc9" }}
                 >
                   {project.category}
                 </span>
-                <h3 className="text-xl font-bold mb-2 group-hover:text-[#02fdc9] transition-colors duration-300">
+                <h3 className="text-xl font-bold mb-2 group-hover:text-accent transition-colors duration-300">
                   {project.title}
                 </h3>
-                <p className="text-gray-400 text-sm leading-6 mb-5 flex-grow line-clamp-3">
+                <p className="text-gray-400 text-sm leading-6 mb-5 grow line-clamp-3">
                   {project.description}
                 </p>
 
@@ -447,7 +447,7 @@ const WorksSection = () => {
                           className="flex items-start gap-3 text-sm md:text-base text-gray-300 font-light"
                         >
                           <span
-                            className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0"
+                            className="mt-1.5 w-1.5 h-1.5 rounded-full shrink-0"
                             style={{ background: "#02fdc9" }}
                           />
                           <span>{feature}</span>
