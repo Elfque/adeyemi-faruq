@@ -16,3 +16,5 @@ export const socials = [
   { Icon: FaGithub, href: links.github, label: "GitHub" },
   { Icon: FaXTwitter, href: links.x, label: "X" },
 ];
+
+export const email = "adeyemifaruq2@gmail.com";

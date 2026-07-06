@@ -1,63 +1,49 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
-import { FaLinkedin } from "react-icons/fa";
-import { FaInstagram } from "react-icons/fa";
-import { FaTiktok } from "react-icons/fa";
+import {
+  FaLinkedin,
+  FaInstagram,
+  FaTiktok,
+  FaArrowRight,
+} from "react-icons/fa";
 
 const Hero = () => {
   const container = useRef(null);
-  const iconsRef = useRef<HTMLDivElement | null>(null);
-  const rightRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
+      const tl = gsap.timeline({ defaults: { ease: "expo.out" } });
 
-      tl.from(".fade-up", {
-        y: 30,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.2,
-      }).from(
-        ".hero-image",
-        {
-          scale: 0.9,
-          opacity: 0,
-          duration: 1,
-        },
-        "-=0.5",
-      );
+      tl.fromTo(
+        ".hero-pill",
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1, delay: 0.2 },
+      )
+        .fromTo(
+          ".hero-title-line span",
+          { y: "100%", opacity: 0 },
+          { y: "0%", opacity: 1, duration: 1, stagger: 0.15 },
+          "-=0.6",
+        )
+        .fromTo(
+          ".hero-desc",
+          { y: 20, opacity: 0 },
+          { y: 0, opacity: 1, duration: 1 },
+          "-=0.6",
+        )
+        .fromTo(
+          ".hero-cta",
+          { y: 20, opacity: 0 },
+          { y: 0, opacity: 1, duration: 1, stagger: 0.1 },
+          "-=0.8",
+        )
+        .fromTo(
+          ".hero-social",
+          { scale: 0.8, opacity: 0 },
+          { scale: 1, opacity: 1, duration: 0.8, stagger: 0.1 },
+          "-=0.8",
+        );
     }, container);
-
-    return () => ctx.revert();
-  }, []);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
-
-      tl.from(".hero-icon", {
-        x: 30,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.2,
-      });
-    }, iconsRef);
-
-    return () => ctx.revert();
-  }, []);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
-
-      tl.from(".right-part", {
-        x: 30,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.3,
-      });
-    }, rightRef);
 
     return () => ctx.revert();
   }, []);
@@ -65,57 +51,74 @@ const Hero = () => {
   return (
     <div
       ref={container}
-      className="min-h-[90vh] text-white p-8 overflow-hidden flex justify-center items-center"
+      className="relative min-h-screen text-white overflow-hidden flex flex-col justify-center items-center px-6"
     >
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center container w-11/12 mx-auto">
-        <div className="space-y-6 fade-up">
-          <h1 className="text-7xl font-bold leading-tight">
-            Adeyemi
-            <br />
-            Faruq
-          </h1>
-          <div className="w-20 h-1.5 bg-accent rounded-md"></div>
-          <div className="flex space-x-6 text-2xl mt-8" ref={iconsRef}>
-            <a href="#" className="hover:text-accent hero-icon">
-              <FaLinkedin />
-            </a>
-            <a href="#" className="hover:text-accent hero-icon">
-              <FaInstagram />
-            </a>
-            <a href="#" className="hover:text-accent hero-icon">
-              <FaTiktok />
-            </a>
-          </div>
+      <div className="container mx-auto max-w-4xl flex flex-col items-center text-center mt-10 z-10">
+        {/* Pill introduction */}
+        <div className="hero-pill inline-flex items-center gap-3 px-5 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-md mb-8 shadow-lg">
+          <span className="w-2.5 h-2.5 rounded-full bg-accent animate-pulse shadow-[0_0_8px_rgba(255,255,255,0.5)]"></span>
+          <span className="text-sm font-medium tracking-wide text-gray-300 uppercase">
+            Available for new projects
+          </span>
         </div>
 
-        <div className="relative">
-          <div className="mt-20 fade-up">
-            <img
-              src="image_18c1bc.jpg"
-              alt="Adeyemi Faruq"
-              className="hero-image rounded-2xl shadow-2xl"
-            />
-
-            <div className="mt-8 space-y-4" ref={rightRef}>
-              <h3 className="text-sm tracking-widest text-gray-400 right-part">
-                — Introduction
-              </h3>
-              <h2 className="text-4xl font-semibold right-part max-w-sm leading-12">
-                Web Designer & Developer in Nigeria
-              </h2>
-              <p className="text-gray-400 max-w-sm leading-8 right-part">
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                accusantium doloremque laudantium, totam rem aperiam, eaque
-                ipsa.
-              </p>
-              <a
-                href="#"
-                className="inline-block text-accent font-semibold hover:underline mt-4 right-part"
-              >
-                My story →
-              </a>
-            </div>
+        {/* Main Typography */}
+        <h1 className="text-4xl md:text-7xl lg:text-8xl font-extrabold leading-[1.1] tracking-tight mb-6">
+          <div className="hero-title-line overflow-hidden pb-2">
+            <span className="block">Adeyemi</span>
           </div>
+          <div className="hero-title-line overflow-hidden pb-2">
+            <span className="block text-accent">Faruq.</span>
+          </div>
+        </h1>
+
+        {/* Subtitle & Description */}
+        <p className="hero-desc text-base md:text-lg text-gray-400 max-w-2xl mb-10 leading-relaxed">
+          I'm a Web Designer & Developer based in Nigeria, focused on crafting
+          premium, engaging, and highly performant web applications. Let's
+          create something extraordinary together.
+        </p>
+
+        {/* CTAs */}
+        <div className="flex flex-col sm:flex-row items-center gap-6 mb-8">
+          <a
+            href="#works"
+            className="hero-cta group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white bg-accent rounded-full overflow-hidden transition-all hover:scale-105 hover:shadow-[0_0_20px_rgba(255,255,255,0.3)]"
+          >
+            <span className="relative flex items-center gap-2">
+              View My Work{" "}
+              <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
+            </span>
+          </a>
+
+          <a
+            href="#about"
+            className="hero-cta inline-flex items-center justify-center px-8 py-4 font-semibold text-white border border-white/20 rounded-full hover:bg-white/10 hover:border-white/40 transition-all"
+          >
+            My Story
+          </a>
+        </div>
+
+        {/* Social Icons */}
+        <div className="flex items-center gap-6 text-xl">
+          <a
+            href="#"
+            className="hero-social p-3 rounded-full bg-white/5 border border-white/10 hover:bg-accent hover:border-accent hover:text-white transition-all text-gray-400 hover:shadow-[0_0_15px_rgba(255,255,255,0.4)]"
+          >
+            <FaLinkedin />
+          </a>
+          <a
+            href="#"
+            className="hero-social p-3 rounded-full bg-white/5 border border-white/10 hover:bg-accent hover:border-accent hover:text-white transition-all text-gray-400 hover:shadow-[0_0_15px_rgba(255,255,255,0.4)]"
+          >
+            <FaInstagram />
+          </a>
+          <a
+            href="#"
+            className="hero-social p-3 rounded-full bg-white/5 border border-white/10 hover:bg-accent hover:border-accent hover:text-white transition-all text-gray-400 hover:shadow-[0_0_15px_rgba(255,255,255,0.4)]"
+          >
+            <FaTiktok />
+          </a>
         </div>
       </div>
     </div>
@@ -123,3 +126,10 @@ const Hero = () => {
 };
 
 export default Hero;
+
+{
+  /* Background glowing effects */
+}
+{
+  /* <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-100 md:w-150 h-100 md:h-150 bg-accent opacity-20 rounded-full blur-[100px] md:blur-[120px] -z-10 pointer-events-none"></div> */
+}

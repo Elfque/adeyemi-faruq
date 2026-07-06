@@ -28,3 +28,7 @@ body {
 .no-scrollbar {
   -ms-overflow-style: none;
 }
+
+.gradient-text {
+  @apply text-transparent bg-clip-text bg-linear-to-r from-accent to-purple-400;
+}

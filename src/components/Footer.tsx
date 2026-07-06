@@ -1,4 +1,4 @@
-import { socials } from "../constants/socials";
+import { email, socials } from "../constants/socials";
 
 const navLinks = ["Services", "Works", "About", "Contact"];
 
@@ -83,8 +83,8 @@ const Footer = () => {
             <div className="space-y-3 text-sm text-gray-300">
               <p>
                 <a
-                  href="mailto:hello@adeyemif.dev"
-                  className="transition-colors duration-200"
+                  href={`mailto:${email}`}
+                  className="transition-colors duration-200 "
                   onMouseEnter={(e) =>
                     ((e.currentTarget as HTMLElement).style.color = "#02fdc9")
                   }
@@ -92,10 +92,10 @@ const Footer = () => {
                     ((e.currentTarget as HTMLElement).style.color = "")
                   }
                 >
-                  hello@adeyemif.dev
+                  {email}
                 </a>
               </p>
-              <p>+234 000 000 0000</p>
+              <p>+234 702 517 5073</p>
               <p className="text-gray-400">Lagos, Nigeria</p>
             </div>
 

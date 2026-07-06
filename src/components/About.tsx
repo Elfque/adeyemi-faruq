@@ -217,7 +217,8 @@ const AboutSection = () => {
             {/* CTA */}
             <div className="flex items-center gap-6 pt-4 about-line">
               <a
-                href="#"
+                href="https://drive.google.com/file/d/1KZbHrkQb7elip1n5_eb3s7n2UFc8-af5/view"
+                target="_blank"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-black transition-all duration-300"
                 style={{ background: "#02fdc9" }}
                 onMouseEnter={(e) =>
@@ -231,7 +232,7 @@ const AboutSection = () => {
                 <FiDownload className="text-xl" />
               </a>
               <a
-                href="mailto:hello@dev.com"
+                href="#contact"
                 className="font-semibold transition-all duration-300"
                 style={{ color: "#02fdc9" }}
                 onMouseEnter={(e) =>
